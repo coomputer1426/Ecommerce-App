@@ -1,5 +1,7 @@
 import 'package:ecommerce/api/api_manager.dart';
 import 'package:ecommerce/ui/DialogUtils.dart';
+import 'package:ecommerce/ui/login/login_screen.dart';
+import 'package:ecommerce/ui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/widgets/form_label.dart';
 import 'package:ecommerce/widgets/custom_form_txt_field.dart';
@@ -139,9 +141,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       FormSubmitButton("Sign Up", () {
                         register();
                       }),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       InkWell(
-                        onTap: () {},
-                        child: const Text("Already have account? Sign In"),
+                        onTap: () {
+                          Navigator.pushNamed(context, LoginScreen.routeName);
+                        },
+                        child: Text(
+                          "Already have account? Sign In",
+                          textAlign: TextAlign.center,
+                          style: poopintsTextStyle.copyWith(
+                              fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
                       )
                     ],
                   ),

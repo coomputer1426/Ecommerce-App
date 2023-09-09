@@ -1,3 +1,4 @@
+import 'package:ecommerce/provider/app_config_provider.dart';
 import 'package:ecommerce/ui/login/login_navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,7 @@ import '../DialogUtils.dart';
 
 class LoginViewModel extends ChangeNotifier {
   LoginNavigator? navigator;
+  AppConfigProvider? configProvider;
 
   void login(String email, String password) async {
     // DialogUtils.showLoading( context ,"Loading, Pls Wait ...");
@@ -32,8 +34,13 @@ class LoginViewModel extends ChangeNotifier {
       // if (!mounted) return;
       if (navigator!.unMounted()) return;
       navigator?.showMessage(
-          "Login Operation Result : ${response.message!} \n Press OK",
-          posActionTitle: "OK");
+          "Login Operation Result : ${response.message!} \n"
+          "Email ${response.user?.name} \n  Token: ${response.token} Press OK",
+          posActionTitle: "OK", posAction: () {
+        configProvider?.updateToken(response.token);
+        // Navigate to Home
+        navigator?.gotoHome();
+      }, dismissible: false);
     } catch (e) {
       // DialogUtils.hideDialog(context);
       navigator?.hideDialog();

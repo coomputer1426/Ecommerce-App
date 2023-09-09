@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce/widgets/form_label.dart';
 import 'package:ecommerce/widgets/custom_form_txt_field.dart';
 import 'package:ecommerce/widgets/form_submit_button.dart';
+import '../theme.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = "login";
@@ -18,8 +19,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   // Map<String, dynamic> authData =  {
   var formKey = GlobalKey<FormState>();
-  TextStyle poopintsTextStyle =
-      const TextStyle(color: Colors.white, fontSize: 24, fontFamily: "Poppins");
 
   // TextEditingController nameController = TextEditingController();
 
@@ -138,13 +137,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       FormSubmitButton("Sign In", () {
                         login();
                       }),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(
                               context, RegisterScreen.routeName);
                         },
-                        child: const Text(
-                            "Don't have an account?, Create Account "),
+                        child: Text(
+                          "Don't have an account?, Create Account ",
+                          style: poopintsTextStyle.copyWith(
+                              fontWeight: FontWeight.w500, fontSize: 16),
+                          textAlign: TextAlign.center,
+                        ),
                       )
                     ],
                   ),

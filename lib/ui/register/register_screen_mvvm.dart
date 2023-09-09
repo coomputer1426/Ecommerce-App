@@ -1,5 +1,8 @@
 // import 'package:ecommerce/api/api_manager.dart';
+import 'package:ecommerce/provider/app_config_provider.dart';
 import 'package:ecommerce/ui/DialogUtils.dart';
+import 'package:ecommerce/ui/home/home_screen.dart';
+import 'package:ecommerce/ui/login/login_screen_provider_mvvm.dart';
 import 'package:ecommerce/ui/register/register_navigator.dart';
 import 'package:ecommerce/ui/register/register_viewModel.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +10,10 @@ import 'package:ecommerce/widgets/form_label.dart';
 import 'package:ecommerce/widgets/custom_form_txt_field.dart';
 import 'package:ecommerce/widgets/form_submit_button.dart';
 import 'package:provider/provider.dart';
+import '../theme.dart';
 
 class RegisterScreenMVVM extends StatefulWidget {
-  static const routeName = "register";
+  static const routeName = "registermvvm";
 
   const RegisterScreenMVVM({super.key});
 
@@ -43,6 +47,7 @@ class _RegisterScreenMVVMState extends State<RegisterScreenMVVM>
     // TODO: implement initState
     super.initState();
     viewModel.navigator = this;
+    viewModel.configProvider = Provider.of<AppConfigProvider>(context);
   }
 
   @override
@@ -153,6 +158,21 @@ class _RegisterScreenMVVMState extends State<RegisterScreenMVVM>
                         FormSubmitButton("Sign Up", () {
                           register();
                         }),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, LoginScreenMVVM.routeName);
+                          },
+                          child: Text(
+                            "Already have account? Sign In",
+                            textAlign: TextAlign.center,
+                            style: poopintsTextStyle.copyWith(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -208,5 +228,11 @@ class _RegisterScreenMVVMState extends State<RegisterScreenMVVM>
   void showProgressDialog(String progressMessage) {
     // TODO: implement showProgressDialog
     DialogUtils.showLoading(context, progressMessage);
+  }
+
+  @override
+  void gotoHome() {
+    // TODO: implement gotoHome
+    Navigator.pushNamed(context, HomeScreen.routeName);
   }
 }

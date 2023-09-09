@@ -60,7 +60,10 @@ class DialogUtils {
         context: context,
         builder: (buildContext) {
           return AlertDialog(
-            content: Text(message),
+            content: Text(
+              message,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
             actions: actions,
           );
         },

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ecommerce/ui/login/login_screen.dart';
+import 'package:ecommerce/ui/login/login_screen_provider_mvvm.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/ui/register/register_screen.dart';
 
@@ -22,7 +23,8 @@ class SplashScreen extends StatelessWidget {
       // ));
       // Navigator.of(_scaffoldKey.currentContext!).pushReplacementNamed(LoginScreen.routeName);
       Navigator.of(navigatorKey.currentContext!)
-          .pushReplacementNamed(LoginScreen.routeName);
+          // .pushReplacementNamed(LoginScreen.routeName);
+          .pushReplacementNamed(LoginScreenMVVM.routeName);
     });
     return Scaffold(
       // key: _scaffoldKey,

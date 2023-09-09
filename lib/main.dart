@@ -1,12 +1,16 @@
+import 'package:ecommerce/provider/app_config_provider.dart';
+import 'package:ecommerce/ui/home/home_screen.dart';
 import 'package:ecommerce/ui/login/login_screen.dart';
 import 'package:ecommerce/ui/register/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/ui/splash/splash_screen.dart';
+import 'package:provider/provider.dart';
 import 'ui/login/login_screen_provider_mvvm.dart';
 import 'ui/register/register_screen_mvvm.dart';
 
 void main() {
-  runApp(const MyApplication());
+  runApp(ChangeNotifierProvider(
+      create: (_) => AppConfigProvider(), child: const MyApplication()));
 }
 
 class MyApplication extends StatelessWidget {
@@ -20,7 +24,7 @@ class MyApplication extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme:
-            const AppBarTheme(backgroundColor: Color(0xff004182), elevation: 0),
+        const AppBarTheme(backgroundColor: Color(0xff004182), elevation: 0),
         primaryColor: const Color(0xff004182),
         scaffoldBackgroundColor: const Color(0xff004182),
       ),
@@ -28,6 +32,9 @@ class MyApplication extends StatelessWidget {
         LoginScreen.routeName: (_) => const LoginScreen(),
         SplashScreen.routeName: (_) => SplashScreen(),
         RegisterScreen.routeName: (_) => const RegisterScreen(),
+        LoginScreenMVVM.routeName: (_) => const LoginScreenMVVM(),
+        RegisterScreenMVVM.routeName: (_) => const RegisterScreenMVVM(),
+        HomeScreen.routeName: (_) => const HomeScreen()
       },
       initialRoute: SplashScreen.routeName,
     );

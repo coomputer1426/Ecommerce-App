@@ -1,7 +1,9 @@
 import 'package:ecommerce/api/api_manager.dart';
 import 'package:ecommerce/ui/DialogUtils.dart';
+import 'package:ecommerce/ui/home/home_screen.dart';
 import 'package:ecommerce/ui/login/login_navigator.dart';
 import 'package:ecommerce/ui/login/login_viewModel.dart';
+import 'package:ecommerce/ui/register/register_screen_mvvm.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/widgets/form_label.dart';
 import 'package:ecommerce/widgets/custom_form_txt_field.dart';
@@ -9,7 +11,7 @@ import 'package:ecommerce/widgets/form_submit_button.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreenMVVM extends StatefulWidget {
-  static const routeName = "login";
+  static const routeName = "loginmvvm";
 
   const LoginScreenMVVM({super.key});
 
@@ -24,6 +26,13 @@ class _LoginScreenMVVMState extends State<LoginScreenMVVM>
   LoginViewModel viewModel = LoginViewModel();
   TextStyle poopintsTextStyle =
       const TextStyle(color: Colors.white, fontSize: 24, fontFamily: "Poppins");
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModel.navigator = this;
+  }
 
   // TextEditingController nameController = TextEditingController();
 
@@ -144,6 +153,21 @@ class _LoginScreenMVVMState extends State<LoginScreenMVVM>
                         FormSubmitButton("Sign In", () {
                           login();
                         }),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RegisterScreenMVVM.routeName);
+                          },
+                          child: Text(
+                            "Don't have an account?, Create Account ",
+                            style: poopintsTextStyle.copyWith(
+                                fontWeight: FontWeight.w500, fontSize: 16),
+                            textAlign: TextAlign.center,
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -188,6 +212,12 @@ class _LoginScreenMVVMState extends State<LoginScreenMVVM>
       negActionTitle: negActionTitle,
       negAction: negAction,
     );
+  }
+
+  @override
+  void gotoHome() {
+    // TODO: implement gotoHome
+    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
   }
 
   @override

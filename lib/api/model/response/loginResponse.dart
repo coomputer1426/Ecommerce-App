@@ -19,7 +19,9 @@ class LoginResponse {
 
   Map<String?, dynamic> toJson() {
     return {
-      'data': (user != null) ? this.user : null,
+      // 'data': (user != null) ? this.user : null,
+      // changed data to user from new api
+      'user': (user != null) ? this.user : null,
       'message': (message != null) ? this.message : null,
       'token': (token != null) ? this.token : null,
       "statusMsg": (statusMsg != null) ? this.statusMsg : null,
@@ -53,7 +55,9 @@ class LoginResponse {
   LoginResponse.fromJson(dynamic json) {
     // debugPrint("Error Message $json.errors.msg");
 
-    user = json['data'] != null ? User.fromJson(json["data"]) : null;
+    // user = json['data'] != null ? User.fromJson(json["data"]) : null;
+    // changed  data to user
+    user = json['user'] != null ? User.fromJson(json["user"]) : null;
 
     token = json['token'] != null ? json["token"] : null;
     message = json['message'] != null ? json["message"] : null;

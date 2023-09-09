@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'error.dart';
 
 // import 'ResponseErrorNew.dart';
@@ -15,11 +17,14 @@ class RegisterResponse {
   // success or other fail
   String? message;
 
-  RegisterResponse({this.user, this.token, this.statusMsg, this.message});
+  RegisterResponse(
+      {this.user, this.token, this.statusMsg, this.message, this.errors});
 
   Map<String?, dynamic> toJson() {
     return {
-      'data': (user != null) ? this.user : null,
+      // 'data': (user != null) ? this.user : null,
+      // changed data to user
+      'user': (user != null) ? this.user : null,
       'message': (message != null) ? this.message : null,
       'token': (token != null) ? this.token : null,
       "statusMsg": (statusMsg != null) ? this.statusMsg : null,
@@ -29,13 +34,16 @@ class RegisterResponse {
   }
 
   String mergeErrors() {
-    String messages = message!.toUpperCase();
+    String messages = "Registration ${statusMsg?.toUpperCase() ?? ""}";
+
+    // debugPrint("Password Confirm");
     // errors?.forEach((element) {
     //   messages += "${element.msg!}\n";
     // });
     messages += (statusMsg == "fail" || message == "fail")
-        ? "\n ${errors!.msg ?? ""} "
+        ? "\n ${errors?.msg ?? ""} "
         : "";
+    messages += message ?? "";
     return messages;
   }
 
@@ -53,7 +61,8 @@ class RegisterResponse {
   RegisterResponse.fromJson(dynamic json) {
     // debugPrint("Error Message $json.errors.msg");
 
-    user = json['data'] != null ? User.fromJson(json["data"]) : null;
+    // user = json['data'] != null ? User.fromJson(json["data"]) : null;
+    user = json['user'] != null ? User.fromJson(json["user"]) : null;
 
     token = json['token'] != null ? json["token"] : null;
     message = json['message'] != null ? json["message"] : null;
