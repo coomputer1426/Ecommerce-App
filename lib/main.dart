@@ -1,7 +1,9 @@
 import 'package:ecommerce/provider/app_config_provider.dart';
 import 'package:ecommerce/ui/home/home_screen.dart';
 import 'package:ecommerce/ui/login/login_screen.dart';
+import 'package:ecommerce/ui/login_mvvm_centered/login_screen_mvvm_base.dart';
 import 'package:ecommerce/ui/register/register_screen.dart';
+import 'package:ecommerce/ui/register_mvvm_centered/register_screen_mvvm_centered.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/ui/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +36,10 @@ class MyApplication extends StatelessWidget {
         RegisterScreen.routeName: (_) => const RegisterScreen(),
         LoginScreenMVVM.routeName: (_) => const LoginScreenMVVM(),
         RegisterScreenMVVM.routeName: (_) => const RegisterScreenMVVM(),
-        HomeScreen.routeName: (_) => const HomeScreen()
+        HomeScreen.routeName: (_) => const HomeScreen(),
+        LoginScreenMVVMBase.routeName: (_) => const LoginScreenMVVMBase(),
+        RegisterScreenMVVMCentered.routeName: (_) =>
+            const RegisterScreenMVVMCentered(),
       },
       initialRoute: SplashScreen.routeName,
     );

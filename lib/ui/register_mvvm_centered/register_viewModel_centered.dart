@@ -1,14 +1,17 @@
-// import 'package:ecommerce/base/base_viewModel.dart';
-import 'package:ecommerce/ui/register/register_navigator.dart';
+import 'package:ecommerce/base/base_viewModel.dart';
+
+// import 'package:ecommerce/ui/register/register_navigator.dart';
+import 'package:ecommerce/ui/register_mvvm_centered/register_navigator_centered.dart';
 import 'package:flutter/material.dart';
 
 import '../../api/api_manager.dart';
 import '../../provider/app_config_provider.dart';
 // import '../DialogUtils.dart';
 
-class RegisterViewModel extends ChangeNotifier {
-// class RegisterViewModel  extends BaseViewModel <RegisterNavigator>{
-  RegisterNavigator? navigator;
+// class RegisterViewModel extends ChangeNotifier {
+class RegisterViewModelCentered
+    extends BaseViewModel<RegisterNavigatorCentered> {
+  // RegisterNavigator? navigator;
   AppConfigProvider? configProvider;
 
   void register(

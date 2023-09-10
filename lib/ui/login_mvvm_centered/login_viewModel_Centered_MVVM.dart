@@ -1,14 +1,16 @@
-// import 'package:ecommerce/base/base_viewModel.dart';
+import 'package:ecommerce/base/base_viewModel.dart';
 import 'package:ecommerce/provider/app_config_provider.dart';
-import 'package:ecommerce/ui/login/login_navigator.dart';
-import 'package:flutter/material.dart';
+
+// import 'package:ecommerce/ui/login/login_navigator.dart';
+import 'package:ecommerce/ui/login_mvvm_centered/login_navigator_Centered.dart';
+// import 'package:flutter/material.dart';
 
 import '../../api/api_manager.dart';
 // import '../DialogUtils.dart';
 
-class LoginViewModel extends ChangeNotifier {
-// class LoginViewModel extends BaseViewModel<LoginNavigator> {
-  LoginNavigator? navigator;
+// class LoginViewModelMVVMCentered extends ChangeNotifier {
+class LoginViewModelCentered extends BaseViewModel<LoginNavigatorMvvMCentered> {
+  // LoginNavigator? navigator;
   AppConfigProvider? configProvider;
 
   void login(String email, String password) async {

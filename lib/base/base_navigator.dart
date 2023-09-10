@@ -1,7 +1,6 @@
-// import 'package:ecommerce/base/base_navigator.dart';
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
-abstract class RegisterNavigator {
+abstract class BaseNavigator {
   void hideDialog(// if (!mounted) return;
 
       );
@@ -16,6 +15,4 @@ abstract class RegisterNavigator {
       bool dismissible = true});
 
   void showProgressDialog(String progressMessage);
-
-  void gotoHome() {}
 }
