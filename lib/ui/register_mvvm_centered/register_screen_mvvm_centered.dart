@@ -9,7 +9,9 @@ import 'package:ecommerce/ui/login_mvvm_centered/login_screen_mvvm_base.dart';
 // import 'package:ecommerce/ui/register/register_navigator.dart';
 // import 'package:ecommerce/ui/register/register_viewModel.dart';
 import 'package:ecommerce/ui/register_mvvm_centered/register_navigator_centered.dart';
-import 'package:ecommerce/ui/register_mvvm_centered/register_viewModel_centered.dart';
+
+// import 'package:ecommerce/ui/register_mvvm_centered/register_viewModel_centered.dart';
+import 'package:ecommerce/ui/register_mvvm_centered/register_viewmodel_center_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/widgets/form_label.dart';
 import 'package:ecommerce/widgets/custom_form_txt_field.dart';
@@ -28,9 +30,11 @@ class RegisterScreenMVVMCentered extends StatefulWidget {
       _RegisterScreenMVVMCenteredState();
 }
 
-class _RegisterScreenMVVMCenteredState
-    extends BaseState<RegisterScreenMVVMCentered, RegisterViewModelCentered>
-    implements RegisterNavigatorCentered {
+class _RegisterScreenMVVMCenteredState extends BaseState<
+    RegisterScreenMVVMCentered,
+// RegisterViewModelCentered>
+// when using Repository
+    RegisterViewModelCenteredRepo> implements RegisterNavigatorCentered {
   // Map<String, dynamic> authData =  {
   var formKey = GlobalKey<FormState>();
 
@@ -56,7 +60,8 @@ class _RegisterScreenMVVMCenteredState
     // TODO: implement initState
     super.initState();
     // viewModel.navigator = this;
-    viewModel.configProvider = Provider.of<AppConfigProvider>(context);
+    viewModel.configProvider =
+        Provider.of<AppConfigProvider>(context, listen: false);
   }
 
   @override
@@ -211,5 +216,8 @@ class _RegisterScreenMVVMCenteredState
   }
 
   @override
-  RegisterViewModelCentered initViewModel() => RegisterViewModelCentered();
+  // RegisterViewModelCentered initViewModel() => RegisterViewModelCentered();
+  // When Using Repository Classes
+  RegisterViewModelCenteredRepo initViewModel() =>
+      RegisterViewModelCenteredRepo();
 }

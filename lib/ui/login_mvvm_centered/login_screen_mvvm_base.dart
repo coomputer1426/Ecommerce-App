@@ -1,11 +1,13 @@
 // import 'package:ecommerce/api/api_manager.dart';
 // import 'package:ecommerce/ui/DialogUtils.dart';
+import 'package:ecommerce/provider/app_config_provider.dart';
 import 'package:ecommerce/ui/home/home_screen.dart';
+import 'package:ecommerce/ui/login_mvvm_centered/login_mvvm_center_repository.dart';
 import 'package:ecommerce/ui/login_mvvm_centered/login_navigator_Centered.dart';
 
 // import 'package:ecommerce/ui/login/login_navigator.dart';
 // import 'package:ecommerce/ui/login/login_viewModel.dart';
-import 'package:ecommerce/ui/login_mvvm_centered/login_viewModel_Centered_MVVM.dart';
+// import 'package:ecommerce/ui/login_mvvm_centered/login_viewModel_Centered_MVVM.dart';
 
 // import 'package:ecommerce/ui/register/register_screen_mvvm.dart';
 import 'package:ecommerce/ui/register_mvvm_centered/register_screen_mvvm_centered.dart';
@@ -26,9 +28,11 @@ class LoginScreenMVVMBase extends StatefulWidget {
   State<LoginScreenMVVMBase> createState() => _LoginScreenMVVMBaseState();
 }
 
-class _LoginScreenMVVMBaseState
-    extends BaseState<LoginScreenMVVMBase, LoginViewModelCentered>
-    implements LoginNavigatorMvvMCentered {
+class _LoginScreenMVVMBaseState extends BaseState<
+    LoginScreenMVVMBase,
+// LoginViewModelCentered>
+// when using Repository
+    LoginViewModelCenteredRepo> implements LoginNavigatorMvvMCentered {
   // Map<String, dynamic> authData =  {
   var formKey = GlobalKey<FormState>();
 
@@ -40,6 +44,10 @@ class _LoginScreenMVVMBaseState
   void initState() {
     // TODO: implement initState
     super.initState();
+    // listen false when using provider outside build and need build not to listen to it so no change
+    // in dependencies so no change in state
+    viewModel.configProvider =
+        Provider.of<AppConfigProvider>(context, listen: false);
     // viewModel.navigator = this;
   }
 
@@ -201,5 +209,7 @@ class _LoginScreenMVVMBaseState
   }
 
   @override
-  LoginViewModelCentered initViewModel() => LoginViewModelCentered();
+  // LoginViewModelCentered initViewModel() => LoginViewModelCentered();
+  // when using repository
+  LoginViewModelCenteredRepo initViewModel() => LoginViewModelCenteredRepo();
 }
